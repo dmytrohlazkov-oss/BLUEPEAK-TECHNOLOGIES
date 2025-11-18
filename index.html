@@ -1,379 +1,696 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bluepeak Manitoba IT Services</title>
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
     <!-- Bootstrap 5 -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-    >
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
 
     <style>
-        body {
-            scroll-behavior: smooth;
+      :root {
+        --bp-dark: #022a4f;
+        --bp-dark-soft: #073867;
+        --bp-accent: #1f8bff;
+        --bp-accent-soft: #e5f2ff;
+        --bp-text-main: #111827;
+        --bp-text-soft: #4b5563;
+        --bp-bg-soft: #f3f4f6;
+      }
+
+      * {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--bp-text-main);
+      }
+
+      /* NAVBAR */
+      .navbar {
+        box-shadow: 0 0 20px rgba(15, 23, 42, 0.15);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nav-link {
+        font-weight: 500;
+      }
+
+      /* HERO */
+      .hero-section {
+        background: radial-gradient(circle at top left, #1059b9 0, #02203e 60%, #010b16 100%);
+        color: #ffffff;
+        padding: 4rem 0 3rem;
+      }
+
+      @media (min-width: 992px) {
+        .hero-section {
+          padding: 5rem 0 4rem;
         }
-        .hero {
-            background: #003666;
-            color: #fff;
-            padding: 4rem 0 3rem;
-        }
-        .hero h1 {
-            font-weight: 700;
-        }
-        .hero-subtext {
-            font-size: 1.1rem;
-            max-width: 600px;
-        }
-        .section-title {
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        .icon-badge {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: #0d6efd1a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-        }
-        .pricing-card {
-            border-radius: 0.75rem;
-        }
-        .bg-light-blue {
-            background: #f3f7fb;
-        }
-        footer {
-            background: #001b33;
-            color: #fff;
-        }
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.25rem 0.85rem;
+        border-radius: 999px;
+        background: rgba(15, 118, 110, 0.16);
+        color: #e0f2fe;
+        font-size: 0.78rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .hero-title {
+        font-weight: 700;
+        line-height: 1.1;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-text {
+        font-size: 1.02rem;
+        color: #e5e7eb;
+      }
+
+      .hero-highlight {
+        color: #fbbf24;
+        font-weight: 600;
+      }
+
+      .hero-list {
+        list-style: none;
+        padding-left: 0;
+        margin-top: 1.25rem;
+      }
+
+      .hero-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 0.35rem;
+        font-size: 0.96rem;
+        color: #d1d5db;
+      }
+
+      .hero-check {
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 999px;
+        background: rgba(34, 197, 94, 0.12);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+      }
+
+      .hero-card {
+        background: rgba(15, 23, 42, 0.65);
+        border-radius: 1.25rem;
+        padding: 1.4rem 1.25rem;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-cta-main {
+        padding: 0.7rem 1.6rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.98rem;
+      }
+
+      .hero-cta-secondary {
+        font-size: 0.9rem;
+        color: #bfdbfe;
+      }
+
+      .hero-cta-secondary span {
+        color: #e5e7eb;
+        font-weight: 500;
+      }
+
+      .hero-img {
+        border-radius: 1.5rem;
+        box-shadow: 0 25px 45px rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        overflow: hidden;
+      }
+
+      /* SECTION SHELLS */
+      .section-padding {
+        padding: 3rem 0;
+      }
+
+      .section-label {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-bottom: 0.4rem;
+      }
+
+      .section-title {
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+
+      .section-subtitle {
+        color: var(--bp-text-soft);
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      /* FEATURE TAGS */
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        background: var(--bp-accent-soft);
+        color: var(--bp-dark);
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin: 0.2rem;
+      }
+
+      .pill span {
+        font-size: 0.9rem;
+      }
+
+      /* CARDS */
+      .bp-card {
+        border-radius: 1.25rem;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+        padding: 1.5rem 1.6rem;
+        height: 100%;
+        background: #ffffff;
+      }
+
+      .bp-card-icon {
+        font-size: 1.7rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .bp-card-title {
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+
+      .bp-card-text {
+        font-size: 0.95rem;
+        color: var(--bp-text-soft);
+      }
+
+      /* ALT SECTION BACKGROUND */
+      .section-soft {
+        background: var(--bp-bg-soft);
+      }
+
+      /* PRICING */
+      .pricing-card {
+        border-radius: 1.5rem;
+        padding: 1.8rem 1.7rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+        height: 100%;
+      }
+
+      .pricing-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #6b7280;
+      }
+
+      .pricing-price {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .pricing-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 1rem;
+      }
+
+      .pricing-list li {
+        font-size: 0.93rem;
+        color: var(--bp-text-soft);
+        margin-bottom: 0.3rem;
+      }
+
+      /* FAQ */
+      .accordion-button {
+        font-weight: 500;
+      }
+
+      /* CONTACT */
+      .contact-card {
+        border-radius: 1.25rem;
+        border: 1px solid #e5e7eb;
+        padding: 1.4rem 1.5rem;
+        background: #ffffff;
+        box-shadow: 0 12px 25px rgba(15, 23, 42, 0.05);
+      }
+
+      .footer {
+        padding: 1.5rem 0 1.2rem;
+        color: #9ca3af;
+        font-size: 0.85rem;
+      }
     </style>
-</head>
-<body>
+  </head>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#home">BLUEPEAK</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#mainNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#wifi">Wi-Fi</a></li>
-        <li class="nav-item"><a class="nav-link" href="#cameras">Cameras</a></li>
-        <li class="nav-item"><a class="nav-link" href="#service">Service</a></li>
-        <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
-        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header id="home" class="hero">
-  <div class="container">
-    <div class="row align-items-center gy-4">
-      <div class="col-lg-7">
-        <h1 class="mb-3">
-          Keeping Your Home and Business<br>
-          Connected, Safe, and Secure
-        </h1>
-        <p class="hero-subtext mb-4">
-          We fix Wi-Fi issues, eliminate dead zones, install reliable camera systems,
-          and keep your network working smoothly every day. Whether it's weak signal,
-          slow speeds, or security needs — we’ve got you covered.
-        </p>
-        <div class="d-flex flex-wrap gap-2 mb-3">
-          <a href="tel:+1204XXXXXXX" class="btn btn-primary btn-lg">
-            Call Now
-          </a>
-          <a href="#pricing" class="btn btn-outline-light btn-lg">
-            View Packages
-          </a>
-        </div>
-        <small class="text-light-50">
-          Manitoba IT Services • Wi-Fi • Security Cameras • Small Business Support
-        </small>
-      </div>
-      <div class="col-lg-5 text-center">
-        <!-- Твой баннер -->
-        <img src="Home.jpg" alt="Bluepeak Manitoba IT Services"
-             class="img-fluid rounded shadow">
-      </div>
-    </div>
-  </div>
-</header>
-
-<!-- WI-FI SECTION -->
-<section id="wifi" class="py-5 bg-light-blue">
-  <div class="container">
-    <h2 class="section-title text-center">Whole-Home Wi-Fi Solutions</h2>
-    <p class="text-center mb-5">
-      Strong, stable Wi-Fi in every room — including garages, basements, and backyards.
-    </p>
-
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-white rounded shadow-sm">
-          <div class="icon-badge mb-3">📶</div>
-          <h5>Fix Weak Wi-Fi & Dead Zones</h5>
-          <p class="mb-0">
-            We diagnose your current setup, find weak points, and install the right
-            routers, mesh systems, or access points to give you full coverage.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-white rounded shadow-sm">
-          <div class="icon-badge mb-3">⚙️</div>
-          <h5>Professional Setup & Tuning</h5>
-          <p class="mb-0">
-            We optimize channel settings, placement, and hardware so your Wi-Fi
-            stays fast and stable — even with many devices online.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-white rounded shadow-sm">
-          <div class="icon-badge mb-3">🏡</div>
-          <h5>Coverage Where You Need It</h5>
-          <p class="mb-0">
-            Perfect for families, home offices, gamers, and smart homes that
-            need reliable Wi-Fi everywhere on the property.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CAMERAS SECTION -->
-<section id="cameras" class="py-5">
-  <div class="container">
-    <h2 class="section-title text-center">Security Camera Systems</h2>
-    <p class="text-center mb-5">
-      Simple, reliable video surveillance for homes and small businesses in Manitoba.
-    </p>
-
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-white rounded shadow-sm border">
-          <h5>Complete Camera Packages</h5>
-          <p class="mb-0">
-            4, 6, or 8+ cameras — depending on your space and needs. We handle
-            full installation, cabling, and setup on your phone or computer.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-white rounded shadow-sm border">
-          <h5>Easy Monitoring</h5>
-          <p class="mb-0">
-            Watch live from your phone anytime, receive motion alerts, and
-            store recordings locally or in the cloud — even if internet drops.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="h-100 p-4 bg-white rounded shadow-sm border">
-          <h5>Clean, Professional Install</h5>
-          <p class="mb-0">
-            We plan camera placement together with you so the system looks neat,
-            covers all important areas, and doesn’t ruin the look of your home.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICE & MAINTENANCE -->
-<section id="service" class="py-5 bg-light-blue">
-  <div class="container">
-    <h2 class="section-title text-center">Service & Maintenance</h2>
-    <p class="text-center mb-4">
-      Ongoing support for all systems we install — Wi-Fi and cameras.
-    </p>
-
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <div class="p-4 bg-white rounded shadow-sm">
-          <ul class="mb-0">
-            <li>Equipment checks and cleaning</li>
-            <li>Software & firmware updates</li>
-            <li>Wi-Fi diagnostics and speed tests</li>
-            <li>Camera checks, image quality tuning</li>
-            <li>Troubleshooting any issues that appear over time</li>
+  <body id="top">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#top">BLUEPEAK</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="#top">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#wifi">Wi-Fi</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cameras">Cameras</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           </ul>
-          <p class="mt-3 mb-0">
-            Our goal is to keep your system running smoothly — so you don’t
-            have to worry about anything.
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-6">
+            <span class="hero-badge">Manitoba IT Services · Wi-Fi & Cameras</span>
+            <h1 class="hero-title display-5">
+              Strong Wi-Fi and
+              <span class="hero-highlight">reliable cameras</span><br />
+              for your home and business.
+            </h1>
+            <p class="hero-text">
+              We fix weak signal, remove dead zones, install clean camera systems and keep everything running smoothly —
+              so you don’t have to worry about it.
+            </p>
+
+            <ul class="hero-list">
+              <li>
+                <span class="hero-check">✔</span>
+                Whole-home Wi-Fi – every room, garage and backyard
+              </li>
+              <li>
+                <span class="hero-check">✔</span>
+                Security cameras with remote view on your phone
+              </li>
+              <li>
+                <span class="hero-check">✔</span>
+                Local Manitoba team – clear communication and tidy work
+              </li>
+            </ul>
+
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 mt-4">
+              <a class="btn btn-primary hero-cta-main" href="tel:+12049620345">📞 Call Now: (204) 962-0345</a>
+              <div class="hero-cta-secondary">
+                Or text / WhatsApp<br /><span>for a free Wi-Fi & camera check.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-card hero-img">
+              <img
+                src="file_000000002ebc71fbb4d7558e81af4d9d.png"
+                alt="Bluepeak Manitoba IT Services – Wi-Fi and camera systems"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick benefits pills -->
+        <div class="mt-4 text-center">
+          <span class="pill"><span>📶</span> Whole-home Wi-Fi</span>
+          <span class="pill"><span>📹</span> Security cameras</span>
+          <span class="pill"><span>🏠</span> Homes & small businesses</span>
+          <span class="pill"><span>🛠️</span> Professional installation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WI-FI SECTION -->
+    <section id="wifi" class="section-padding section-soft">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Wi-Fi Solutions</div>
+          <h2 class="section-title">Reliable Wi-Fi in every corner</h2>
+          <p class="section-subtitle">
+            We diagnose your current setup, fix weak spots, and install equipment that works for years – not months.
           </p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- PRICING -->
-<section id="pricing" class="py-5">
-  <div class="container">
-    <h2 class="section-title text-center">Sample Packages & Pricing</h2>
-    <p class="text-center mb-5">
-      Exact price depends on your home or business — but these examples give an idea.
-    </p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🏡</div>
+              <h3 class="bp-card-title">Whole-Home Wi-Fi</h3>
+              <p class="bp-card-text">
+                Mesh systems and access points that cover every room, basement, garage and backyard – with one strong
+                network name.
+              </p>
+            </div>
+          </div>
 
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="pricing-card border p-4 h-100">
-          <h5>Wi-Fi Boost – Small Home</h5>
-          <p class="text-muted">Apartments & small houses</p>
-          <h3 class="mb-3">$XXX+</h3>
-          <ul>
-            <li>Full Wi-Fi check & diagnostics</li>
-            <li>Router optimization or upgrade</li>
-            <li>Setup for phones, TVs, laptops</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline-primary w-100 mt-3">Get exact quote</a>
-        </div>
-      </div>
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🧰</div>
+              <h3 class="bp-card-title">Troubleshooting & Fix</h3>
+              <p class="bp-card-text">
+                Slow internet, random disconnects, smart TV buffering or Zoom drops? We find the real cause and fix it
+                on site.
+              </p>
+            </div>
+          </div>
 
-      <div class="col-md-4">
-        <div class="pricing-card border p-4 h-100 bg-light-blue">
-          <h5>Whole-Home Wi-Fi</h5>
-          <p class="text-muted">Medium / large homes</p>
-          <h3 class="mb-3">$XXX+</h3>
-          <ul>
-            <li>Mesh or access point system</li>
-            <li>Coverage for all rooms & backyard</li>
-            <li>Professional installation & tuning</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary w-100 mt-3">Book consultation</a>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="pricing-card border p-4 h-100">
-          <h5>Camera System Starter</h5>
-          <p class="text-muted">Home or small business</p>
-          <h3 class="mb-3">$XXX+</h3>
-          <ul>
-            <li>4-camera package</li>
-            <li>Local recording & phone app</li>
-            <li>Clean, professional install</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline-primary w-100 mt-3">Ask about details</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section id="faq" class="py-5 bg-light-blue">
-  <div class="container">
-    <h2 class="section-title text-center">FAQ</h2>
-
-    <div class="accordion" id="faqAccordion">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="faq1h">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq1">
-            Do you provide the internet connection?
-          </button>
-        </h2>
-        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            No. Your internet service comes from providers like Bell MTS or Shaw.
-            We improve your Wi-Fi and camera systems inside the home or business,
-            using the connection you already have.
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🏢</div>
+              <h3 class="bp-card-title">Small Business Wi-Fi</h3>
+              <p class="bp-card-text">
+                Stable Wi-Fi for offices, shops, and small warehouses – separate guest networks, clean wiring, and
+                secure equipment.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="faq2h">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq2">
-            Which areas do you serve?
-          </button>
-        </h2>
-        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            We serve Winnipeg and nearby Manitoba areas. For locations outside the city,
-            travel cost may apply — just ask us.
+    <!-- CAMERA SECTION -->
+    <section id="cameras" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Security Camera Systems</div>
+          <h2 class="section-title">Simple, reliable video surveillance</h2>
+          <p class="section-subtitle">
+            Clean installation, clear image, and easy monitoring from your phone for homes and small businesses in
+            Manitoba.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">📦</div>
+              <h3 class="bp-card-title">Complete Camera Packages</h3>
+              <p class="bp-card-text">
+                4, 6, or 8+ cameras – depending on your space and needs. We handle full installation, cabling and setup
+                on your phone or computer.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">📱</div>
+              <h3 class="bp-card-title">Easy Monitoring</h3>
+              <p class="bp-card-text">
+                Watch live from your phone anytime, receive motion alerts and store recordings locally or in the cloud –
+                even if internet drops.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🧼</div>
+              <h3 class="bp-card-title">Clean, Professional Install</h3>
+              <p class="bp-card-text">
+                We plan camera placement together with you so the system looks neat, covers all important areas and
+                doesn’t ruin the look of your home.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="faq3h">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#faq3">
-            Can you fix an existing system?
-          </button>
-        </h2>
-        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-          <div class="accordion-body">
-            Yes. We can check your existing Wi-Fi or camera setup, improve the configuration,
-            replace weak hardware, and clean up wiring where possible.
+    <!-- SERVICE & MAINTENANCE -->
+    <section id="services" class="section-padding section-soft">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-7">
+            <div class="bp-card h-100">
+              <div class="bp-card-icon">🛠️</div>
+              <h3 class="bp-card-title">Service & Maintenance</h3>
+              <p class="bp-card-text mb-2">
+                We provide full service and ongoing support after installation. That includes equipment checks,
+                cleaning, software updates, Wi-Fi diagnostics and fixing any issues that appear over time.
+              </p>
+              <p class="bp-card-text mb-0">
+                Our goal is to keep your system running smoothly – so you don’t have to worry about anything.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="bp-card h-100">
+              <div class="bp-card-icon">💡</div>
+              <h3 class="bp-card-title">Why people choose Bluepeak</h3>
+              <ul class="pricing-list">
+                <li>Local Manitoba business – you always know who is coming.</li>
+                <li>Clear, simple communication without complex technical words.</li>
+                <li>We treat your home with respect and clean up after work.</li>
+                <li>No pressure – we explain options and let you decide.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact" class="py-5">
-  <div class="container">
-    <h2 class="section-title text-center">Contact Bluepeak</h2>
-    <p class="text-center mb-4">
-      Tell us briefly about your home or business and what problem you want to solve.
-    </p>
+    <!-- PRICING -->
+    <section id="pricing" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Pricing & Packages</div>
+          <h2 class="section-title">Transparent, simple pricing</h2>
+          <p class="section-subtitle">
+            Final price depends on your home, wiring and equipment – but these ranges give you an idea of what to
+            expect.
+          </p>
+        </div>
 
-    <div class="row justify-content-center">
-      <div class="col-md-6 text-center">
-        <p class="mb-1 fw-semibold">Phone / Text</p>
-        <p class="mb-3">
-          <a href="tel:+1204XXXXXXX" class="link-primary">+1 (204) XXX-XXXX</a>
-        </p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="pricing-card">
+              <div class="pricing-label">Wi-Fi Fix</div>
+              <div class="pricing-price">from $120</div>
+              <p class="text-muted small mb-2">Typical one-time visit</p>
+              <ul class="pricing-list">
+                <li>On-site diagnostics of your current Wi-Fi</li>
+                <li>Fixing router settings, channels, placement</li>
+                <li>Advice on best upgrade options if needed</li>
+              </ul>
+              <a href="tel:+12049620345" class="btn btn-outline-primary btn-sm w-100">Call to discuss</a>
+            </div>
+          </div>
 
-        <p class="mb-1 fw-semibold">Email</p>
-        <p class="mb-3">
-          <a href="mailto:info@bluepeakmvs.com" class="link-primary">info@bluepeakmvs.com</a>
-        </p>
+          <div class="col-md-4">
+            <div class="pricing-card border-primary">
+              <div class="pricing-label text-primary">Whole-Home Wi-Fi</div>
+              <div class="pricing-price">from $350</div>
+              <p class="text-muted small mb-2">Equipment + installation</p>
+              <ul class="pricing-list">
+                <li>Mesh system or access points included</li>
+                <li>Full setup, testing and optimization</li>
+                <li>Wi-Fi in every room, garage and backyard</li>
+              </ul>
+              <a href="tel:+12049620345" class="btn btn-primary btn-sm w-100">Free home check</a>
+            </div>
+          </div>
 
-        <a href="https://wa.me/1XXXXXXXXXX" class="btn btn-success btn-lg mb-3">
-          Message on WhatsApp
-        </a>
-
-        <p class="small text-muted mb-0">
-          Typical reply time: same day or next business day.
-        </p>
+          <div class="col-md-4">
+            <div class="pricing-card">
+              <div class="pricing-label">Camera Packages</div>
+              <div class="pricing-price">from $700</div>
+              <p class="text-muted small mb-2">4+ cameras installed</p>
+              <ul class="pricing-list">
+                <li>Professional, clean cable runs</li>
+                <li>Recording setup and phone access</li>
+                <li>Training on how to use the system</li>
+              </ul>
+              <a href="tel:+12049620345" class="btn btn-outline-primary btn-sm w-100">Talk about your project</a>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer class="py-3">
-  <div class="container d-flex flex-wrap justify-content-between">
-    <span>© <span id="year"></span> Bluepeak Manitoba IT Services</span>
-    <span class="small">Professional Wi-Fi & Security Camera Solutions in Winnipeg</span>
-  </div>
-</footer>
+    <!-- FAQ -->
+    <section id="faq" class="section-padding section-soft">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">FAQ</div>
+          <h2 class="section-title">Questions people ask us</h2>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-</body>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1-heading">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                    Are you an internet provider?
+                  </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    No, we are not an internet provider. You keep your current provider – we make their internet work
+                    properly inside your home or business (Wi-Fi, wiring, equipment).
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2-heading">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                    Do you bring the equipment or can you use mine?
+                  </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    We can work both ways. We install and configure professional equipment that we recommend, or we can
+                    try to work with your existing routers and cameras if they are good enough.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3-heading">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                    How long does installation usually take?
+                  </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Small Wi-Fi jobs are often done in 1–2 hours. Whole-home Wi-Fi or camera systems can take from
+                    half a day to a full day, depending on size of the house and number of cameras.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq4-heading">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                    Do you offer warranty?
+                  </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes. We support our work and help with questions after installation. Equipment warranty depends on
+                    the brand you choose – we usually work with trusted, long-term vendors.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Contact</div>
+          <h2 class="section-title">Let’s talk about your home or business</h2>
+          <p class="section-subtitle">Call, text, or email – we answer in simple language and help you choose the right option.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-5">
+            <div class="contact-card h-100">
+              <h5 class="mb-1">Volodymyr Pikush</h5>
+              <p class="text-muted small mb-2">Security cameras · Cabling · Small business</p>
+              <p class="mb-1">📞 <a href="tel:+19057820158">+1 (905) 782-0158</a></p>
+              <p class="mb-0">
+                ✉️
+                <a href="mailto:v.pikush@bluepeakmvs.com">v.pikush@bluepeakmvs.com</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="contact-card h-100">
+              <h5 class="mb-1">Dmytro Hlazkov</h5>
+              <p class="text-muted small mb-2">Wi-Fi · Home networking · IT support</p>
+              <p class="mb-1">📞 <a href="tel:+12049620345">+1 (204) 962-0345</a></p>
+              <p class="mb-0">
+                ✉️
+                <a href="mailto:d.hlazkov@bluepeakmvs.com">d.hlazkov@bluepeakmvs.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center bg-dark text-light">
+      <div class="container">
+        Bluepeak Manitoba IT Services · Wi-Fi & Security Cameras · Manitoba, Canada
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Close mobile menu after click -->
+    <script>
+      document.querySelectorAll(".navbar-collapse .nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          const nav = document.querySelector(".navbar-collapse");
+          const bsCollapse = bootstrap.Collapse.getInstance(nav);
+          if (bsCollapse) bsCollapse.hide();
+        });
+      });
+    </script>
+  </body>
 </html>
