@@ -80,9 +80,11 @@
 
       .hero-img img {
   display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  width: 100%;          /* Растянуть по ширине */
+  height: 280px;        /* Ограничение высоты (можно 250–320) */
+  object-fit: cover;    /* Вписывает красиво */
+  object-position: center;  /* Центрует */
+  border-radius: 0.5rem;
 }
 
       /* SECTION SHELLS */
