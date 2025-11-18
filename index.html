@@ -50,6 +50,34 @@
         font-weight: 500;
       }
 
+      /* HERO */
+      .hero-section {
+        background: radial-gradient(circle at top left, #1059b9 0, #02203e 60%, #010b16 100%);
+        color: #ffffff;
+        padding: 4rem 0 3rem;
+      }
+
+      @media (min-width: 992px) {
+        .hero-section {
+          padding: 5rem 0 4rem;
+        }
+      }
+
+      .hero-card {
+        background: rgba(15, 23, 42, 0.65);
+        border-radius: 1.5rem;
+        padding: 1.4rem 1.25rem;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-img {
+        border-radius: 1.5rem;
+        box-shadow: 0 25px 45px rgba(15, 23, 42, 0.5);
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        overflow: hidden;
+      }
+
       /* SECTION SHELLS */
       .section-padding {
         padding: 3rem 0;
@@ -73,6 +101,24 @@
         color: var(--bp-text-soft);
         max-width: 680px;
         margin: 0 auto;
+      }
+
+      /* FEATURE TAGS */
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        background: var(--bp-accent-soft);
+        color: var(--bp-dark);
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin: 0.2rem;
+      }
+
+      .pill span {
+        font-size: 0.9rem;
       }
 
       /* CARDS */
@@ -103,6 +149,61 @@
       /* ALT SECTION BACKGROUND */
       .section-soft {
         background: var(--bp-bg-soft);
+      }
+
+      /* PRICING */
+      .pricing-card {
+        border-radius: 1.5rem;
+        padding: 1.8rem 1.7rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+        height: 100%;
+      }
+
+      .pricing-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #6b7280;
+      }
+
+      .pricing-price {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .pricing-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 1rem;
+      }
+
+      .pricing-list li {
+        font-size: 0.93rem;
+        color: var(--bp-text-soft);
+        margin-bottom: 0.3rem;
+      }
+
+      /* FAQ */
+      .accordion-button {
+        font-weight: 500;
+      }
+
+      /* CONTACT */
+      .contact-card {
+        border-radius: 1.25rem;
+        border: 1px solid #e5e7eb;
+        padding: 1.4rem 1.5rem;
+        background: #ffffff;
+        box-shadow: 0 12px 25px rgba(15, 23, 42, 0.05);
+      }
+
+      .footer {
+        padding: 1.5rem 0 1.2rem;
+        color: #9ca3af;
+        font-size: 0.85rem;
       }
     </style>
   </head>
@@ -136,7 +237,32 @@
       </div>
     </nav>
 
-    <!-- STARTS EXACTLY LIKE YOUR SCREENSHOT -->
+    <!-- HERO (ТВОЙ ЛОГО БЛОК СРАЗУ ПОД НАВБАРОМ) -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-xl-8">
+            <div class="hero-card hero-img">
+              <img
+                src="file_000000002ebc71fbb4d7558e81af4d9d.png"
+                alt="Bluepeak Manitoba IT Services – Wi-Fi and camera systems"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick benefits pills -->
+        <div class="mt-4 text-center">
+          <span class="pill"><span>📶</span> Whole-home Wi-Fi</span>
+          <span class="pill"><span>📹</span> Security cameras</span>
+          <span class="pill"><span>🏠</span> Homes & small businesses</span>
+          <span class="pill"><span>🛠️</span> Professional installation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- WI-FI SECTION -->
     <section id="wifi" class="section-padding section-soft">
       <div class="container">
         <div class="text-center mb-4">
@@ -184,7 +310,6 @@
       </div>
     </section>
 
-    <!-- EVERYTHING BELOW IS ALSO EXACTLY FROM YOUR FILE -->
     <!-- CAMERA SECTION -->
     <section id="cameras" class="section-padding">
       <div class="container">
@@ -392,7 +517,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
