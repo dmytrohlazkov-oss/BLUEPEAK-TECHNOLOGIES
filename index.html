@@ -74,11 +74,12 @@
         backdrop-filter: blur(10px);
       }
 
-      .hero-img {
-        border-radius: 1.5rem;
-        box-shadow: 0 25px 45px rgba(15, 23, 42, 0.5);
-        border: 1px solid rgba(148, 163, 184, 0.35);
-        overflow: hidden;
+      .hero-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 320px;   /* можно 320–360 по вкусу */
+  object-fit: cover;
       }
 
       /* SECTION SHELLS */
