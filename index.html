@@ -31,6 +31,14 @@
       * {
         scroll-behavior: smooth;
       }
+      /* чтобы якоря не прятались под меню */
+#wifi,
+#cameras,
+#pricing,
+#faq,
+#contact {
+  scroll-margin-top: 80px; /* подбери число под высоту меню: 70–100px */
+}
 
       body {
         font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
