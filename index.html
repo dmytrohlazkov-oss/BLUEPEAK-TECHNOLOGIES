@@ -30,7 +30,6 @@
 
       * {
         scroll-behavior: smooth;
-        scroll-padding-top: 200px;
       }
     
       body {
@@ -595,5 +594,35 @@ Technology should be simple and work smoothly every day.</li>
         });
       });
     </script>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector(".navbar");
+    const navHeight = nav ? nav.offsetHeight : 0;
+
+    document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        // якорь, например "#wifi"
+        if (!href || href === "#") return;
+
+        const id = href.substring(1); // "wifi"
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        e.preventDefault();
+
+        const y =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          navHeight - 10; // небольшой запас
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      });
+    });
+  });
+</script>
   </body>
 </html>
