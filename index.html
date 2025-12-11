@@ -702,83 +702,34 @@ Whether it’s your home or your business, you can expect honest advice, profess
       crossorigin="anonymous"
     ></script>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const nav = document.querySelector(".navbar");
-  const navCollapse = document.querySelector(".navbar-collapse");
-  const toggler = document.querySelector(".navbar-toggler");
-  const navHeight = nav ? nav.offsetHeight : 0;
-  let lastScrollY = 0; // где был скролл в момент открытия меню
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector(".navbar");
+    const navHeight = nav ? nav.offsetHeight : 0;
 
-  // 1. Запоминаем позицию скролла, когда открываем меню
-  if (toggler && navCollapse) {
-    toggler.addEventListener("click", () => {
-      if (window.innerWidth >= 992) return; // только мобильное меню
-      const willOpen = !navCollapse.classList.contains("show");
-      if (willOpen) {
-        lastScrollY = window.scrollY;
-      }
-    });
-  }
+    document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        // якорь, например "#wifi"
+        if (!href || href === "#") return;
 
-  // 2. Закрыть меню при клике по пункту
-  document.querySelectorAll(".navbar-collapse .nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth >= 992) return;
-      const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
-      if (bsCollapse) bsCollapse.hide();
-    });
-  });
+        const id = href.substring(1); // "wifi"
+        const target = document.getElementById(id);
+        if (!target) return;
 
-  // 3. Плавный скролл с учётом высоты навбара
-  document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const href = link.getAttribute("href");
-      if (!href || href === "#") return;
+        e.preventDefault();
 
-      const id = href.substring(1);
-      const target = document.getElementById(id);
-      if (!target) return;
+        const y =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          navHeight - 270; // небольшой запас
 
-      e.preventDefault();
-
-      const y =
-        target.getBoundingClientRect().top +
-        window.pageYOffset -
-        (navHeight - 600); // маленький отступ
-
-      window.scrollTo({
-        top: y,
-        behavior: "smooth",
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
       });
     });
   });
-
-  // 4. Закрывать меню при клике по белому фону
-  document.addEventListener("click", (e) => {
-    if (window.innerWidth >= 992) return;
-    if (!navCollapse.classList.contains("show")) return;
-
-    const clickInsideMenu = navCollapse.contains(e.target);
-    const clickOnToggler = toggler.contains(e.target);
-
-    if (!clickInsideMenu && !clickOnToggler) {
-      const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
-      if (bsCollapse) bsCollapse.hide();
-    }
-  });
-
-  // 5. Закрывать меню при прокрутке (если прокрутили достаточно)
-  window.addEventListener("scroll", () => {
-    if (window.innerWidth >= 992) return;
-    if (!navCollapse.classList.contains("show")) return;
-
-    // если прокрутили меньше 80px с момента открытия — игнорируем
-    if (Math.abs(window.scrollY - lastScrollY) < 80) return;
-
-    const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
-    if (bsCollapse) bsCollapse.hide();
-  });
-});
 </script>
   </body>
 </html>
