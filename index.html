@@ -741,6 +741,61 @@ Whether it’s your home or your business, you can expect honest advice, profess
     });
   });
 </script>
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const navCollapse = document.querySelector(".navbar-collapse");
+  const navToggler = document.querySelector(".navbar-toggler");
 
+  if (!navCollapse || !navToggler) return;
+
+  const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navCollapse, {
+    toggle: false
+  });
+
+  // 1. Закрыть меню при клике по пункту
+  document.querySelectorAll(".navbar-collapse .nav-link").forEach(link => {
+    link.addEventListener("click", () => {
+      bsCollapse.hide();
+    });
+  });
+
+  // 2. Закрыть меню при клике по белому экрану
+  document.addEventListener("click", (e) => {
+    if (!navCollapse.classList.contains("show")) return;
+
+    const clickInsideMenu = navCollapse.contains(e.target);
+    const clickOnToggler = navToggler.contains(e.target);
+
+    if (!clickInsideMenu && !clickOnToggler) {
+      bsCollapse.hide();
+    }
+  });
+
+  // 3. Закрытие меню при прокрутке (но НЕ когда скроллим саму панель)
+  let isPointerInsideMenu = false;
+
+  navCollapse.addEventListener("pointerenter", () => {
+    isPointerInsideMenu = true;
+  });
+
+  navCollapse.addEventListener("pointerleave", () => {
+    isPointerInsideMenu = false;
+  });
+
+  let lastScrollY = window.scrollY;
+
+  window.addEventListener("scroll", () => {
+    if (!navCollapse.classList.contains("show")) return;
+
+    if (isPointerInsideMenu) return;
+
+    if (Math.abs(window.scrollY - lastScrollY) > 5) {
+      bsCollapse.hide();
+    }
+
+    lastScrollY = window.scrollY;
+  });
+});
+    </script>
   </body>
 </html>
