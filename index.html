@@ -730,7 +730,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       e.preventDefault();
 
-      const y = target.getBoundingClientRect().top + window.pageYOffset - (navHeight + 10);
+      const y = target.getBoundingClientRect().top + window.pageYOffset - (navHeight - 390;
       window.scrollTo({ top: y, behavior: "smooth" });
     });
   });
