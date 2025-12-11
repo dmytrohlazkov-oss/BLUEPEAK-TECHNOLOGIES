@@ -771,31 +771,42 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 3. Закрытие меню при прокрутке (но НЕ когда скроллим саму панель)
-  let isPointerInsideMenu = false;
+  // ---------- ЛОГИКА ПРОКРУТКИ ----------
 
+  let isPointerInsideMenu = false;
+  let menuJustOpened = false;
+
+  // палец над меню
   navCollapse.addEventListener("pointerenter", () => {
     isPointerInsideMenu = true;
   });
-
   navCollapse.addEventListener("pointerleave", () => {
     isPointerInsideMenu = false;
+  });
+
+  // меню только что открылось — игнорируем первый скролл
+  navCollapse.addEventListener("shown.bs.collapse", () => {
+    menuJustOpened = true;
+    setTimeout(() => {
+      menuJustOpened = false;
+    }, 400); // 0.4 секунды защиты
   });
 
   let lastScrollY = window.scrollY;
 
   window.addEventListener("scroll", () => {
     if (!navCollapse.classList.contains("show")) return;
+    if (menuJustOpened) return;          // не закрываем сразу после открытия
+    if (isPointerInsideMenu) return;     // не закрываем, если скроллим меню
 
-    if (isPointerInsideMenu) return;
-
-    if (Math.abs(window.scrollY - lastScrollY) > 5) {
+    // фильтр от микроскопических движений
+    if (Math.abs(window.scrollY - lastScrollY) > 20) {
       bsCollapse.hide();
     }
 
     lastScrollY = window.scrollY;
   });
 });
-    </script>
+</script>
   </body>
 </html>
