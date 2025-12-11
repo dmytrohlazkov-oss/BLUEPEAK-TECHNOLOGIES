@@ -709,7 +709,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggler = document.querySelector(".navbar-toggler");
   const navHeight = nav ? nav.offsetHeight : 0;
 
-  // 1. Закрытие меню при клике по пункту меню
+  // 1. Закрытие меню при клике по пункту
   document.querySelectorAll(".navbar-collapse .nav-link").forEach((link) => {
     link.addEventListener("click", () => {
       const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
@@ -730,15 +730,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       e.preventDefault();
 
-      const y = target.getBoundingClientRect().top + window.pageYOffset - (navHeight - 390;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - (navHeight + 10);
       window.scrollTo({ top: y, behavior: "smooth" });
     });
   });
 
-  // 3. Закрытие меню при клике по белому экрану
+  // 3. Закрытие меню при клике по белому фону
   document.addEventListener("click", (e) => {
-    if (window.innerWidth >= 992) return; // только мобильное меню
-    if (!navCollapse.classList.contains("show")) return; // меню закрыто
+    if (window.innerWidth >= 992) return;
+    if (!navCollapse.classList.contains("show")) return;
 
     const clickInsideMenu = navCollapse.contains(e.target);
     const clickOnToggler = toggler.contains(e.target);
@@ -747,6 +747,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
       if (bsCollapse) bsCollapse.hide();
     }
+  });
+
+  // 4. Закрытие меню при прокрутке
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth >= 992) return;
+    if (!navCollapse.classList.contains("show")) return;
+
+    const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+    if (bsCollapse) bsCollapse.hide();
   });
 
 });
