@@ -743,35 +743,26 @@ Whether it’s your home or your business, you can expect honest advice, profess
   });
 </script>
     <script>
-    <script>
+<script>
   document.addEventListener("DOMContentLoaded", () => {
-    // 1. Закрывать мобильное меню при клике по пункту
-    document.querySelectorAll(".navbar-collapse .nav-link").forEach(link => {
-      link.addEventListener("click", () => {
-        const nav = document.querySelector(".navbar-collapse");
-        if (!nav) return;
-
-        const bsCollapse = bootstrap.Collapse.getInstance(nav);
-        if (bsCollapse) bsCollapse.hide();
-      });
-    });
-
-    // 2. Плавный скролл с учётом высоты навбара
     const nav = document.querySelector(".navbar");
     const navHeight = nav ? nav.offsetHeight : 0;
 
-    document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+    document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
       link.addEventListener("click", (e) => {
         const href = link.getAttribute("href");
         if (!href || href === "#") return;
 
-        const id = href.substring(1); // без #
+        const id = href.substring(1);
         const target = document.getElementById(id);
         if (!target) return;
 
         e.preventDefault();
 
-        const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+        const y =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          (navHeight + 10); // ← ВОТ ЭТО ДОЛЖНО БЫТЬ!
 
         window.scrollTo({
           top: y,
