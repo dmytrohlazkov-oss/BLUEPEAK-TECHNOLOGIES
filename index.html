@@ -743,6 +743,18 @@ Whether it’s your home or your business, you can expect honest advice, profess
   });
 </script>
     <script>
+  window.addEventListener("scroll", () => {
+    const nav = document.querySelector(".navbar-collapse");
+    if (!nav) return;
+
+    // Если меню открыто — закрываем
+    if (nav.classList.contains("show")) {
+      const bsCollapse = bootstrap.Collapse.getInstance(nav);
+      if (bsCollapse) bsCollapse.hide();
+    }
+  });
+</script>
+    <script>
   document.addEventListener("click", (e) => {
     const nav = document.querySelector(".navbar-collapse");
     const toggler = document.querySelector(".navbar-toggler");
