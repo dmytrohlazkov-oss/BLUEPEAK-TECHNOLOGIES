@@ -743,16 +743,36 @@ Whether it’s your home or your business, you can expect honest advice, profess
   });
 </script>
     <script>
-  window.addEventListener("scroll", () => {
-    const nav = document.querySelector(".navbar-collapse");
-    if (!nav) return;
+  // запоминаем, на какой высоте открыли меню
+  let menuOpenScrollY = null;
 
-    // Если меню открыто — закрываем
-    if (nav.classList.contains("show")) {
+  const nav = document.querySelector(".navbar-collapse");
+  const toggler = document.querySelector(".navbar-toggler");
+
+  if (nav && toggler) {
+    // когда нажали на кнопку меню
+    toggler.addEventListener("click", () => {
+      const isOpening = !nav.classList.contains("show");
+      if (isOpening) {
+        menuOpenScrollY = window.scrollY;   // запомнили позицию
+      } else {
+        menuOpenScrollY = null;             // меню закрыто
+      }
+    });
+
+    // закрываем меню только при заметной прокрутке
+    window.addEventListener("scroll", () => {
+      if (!nav.classList.contains("show")) return;        // меню уже закрыто
+      if (menuOpenScrollY === null) return;
+
+      // если прокрутка меньше 40px — считаем, что это случайный дёрг
+      if (Math.abs(window.scrollY - menuOpenScrollY) < 40) return;
+
       const bsCollapse = bootstrap.Collapse.getInstance(nav);
       if (bsCollapse) bsCollapse.hide();
-    }
-  });
+      menuOpenScrollY = null;
+    });
+  }
 </script>
     <script>
   document.addEventListener("click", (e) => {
