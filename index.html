@@ -742,5 +742,21 @@ Whether it’s your home or your business, you can expect honest advice, profess
     });
   });
 </script>
+    <script>
+  document.addEventListener("click", (e) => {
+    const nav = document.querySelector(".navbar-collapse");
+    const toggler = document.querySelector(".navbar-toggler");
+    if (!nav || !toggler) return;
+
+    // если меню не открыто — ничего не делаем
+    if (!nav.classList.contains("show")) return;
+
+    // если кликнули не по самому меню и не по кнопке-бургеру
+    if (!nav.contains(e.target) && !toggler.contains(e.target)) {
+      const bsCollapse = bootstrap.Collapse.getInstance(nav);
+      if (bsCollapse) bsCollapse.hide();
+    }
+  });
+    </script>
   </body>
 </html>
