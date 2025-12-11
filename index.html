@@ -743,52 +743,43 @@ Whether it’s your home or your business, you can expect honest advice, profess
   });
 </script>
     <script>
-  // запоминаем, на какой высоте открыли меню
-  let menuOpenScrollY = null;
-
-  const nav = document.querySelector(".navbar-collapse");
-  const toggler = document.querySelector(".navbar-toggler");
-
-  if (nav && toggler) {
-    // когда нажали на кнопку меню
-    toggler.addEventListener("click", () => {
-      const isOpening = !nav.classList.contains("show");
-      if (isOpening) {
-        menuOpenScrollY = window.scrollY;   // запомнили позицию
-      } else {
-        menuOpenScrollY = null;             // меню закрыто
-      }
-    });
-
-    // закрываем меню только при заметной прокрутке
-    window.addEventListener("scroll", () => {
-      if (!nav.classList.contains("show")) return;        // меню уже закрыто
-      if (menuOpenScrollY === null) return;
-
-      // если прокрутка меньше 40px — считаем, что это случайный дёрг
-      if (Math.abs(window.scrollY - menuOpenScrollY) < 40) return;
-
-      const bsCollapse = bootstrap.Collapse.getInstance(nav);
-      if (bsCollapse) bsCollapse.hide();
-      menuOpenScrollY = null;
-    });
-  }
-</script>
     <script>
-  document.addEventListener("click", (e) => {
-    const nav = document.querySelector(".navbar-collapse");
-    const toggler = document.querySelector(".navbar-toggler");
-    if (!nav || !toggler) return;
+  document.addEventListener("DOMContentLoaded", () => {
+    // 1. Закрывать мобильное меню при клике по пункту
+    document.querySelectorAll(".navbar-collapse .nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        const nav = document.querySelector(".navbar-collapse");
+        if (!nav) return;
 
-    // если меню не открыто — ничего не делаем
-    if (!nav.classList.contains("show")) return;
+        const bsCollapse = bootstrap.Collapse.getInstance(nav);
+        if (bsCollapse) bsCollapse.hide();
+      });
+    });
 
-    // если кликнули не по самому меню и не по кнопке-бургеру
-    if (!nav.contains(e.target) && !toggler.contains(e.target)) {
-      const bsCollapse = bootstrap.Collapse.getInstance(nav);
-      if (bsCollapse) bsCollapse.hide();
-    }
+    // 2. Плавный скролл с учётом высоты навбара
+    const nav = document.querySelector(".navbar");
+    const navHeight = nav ? nav.offsetHeight : 0;
+
+    document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (!href || href === "#") return;
+
+        const id = href.substring(1); // без #
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        e.preventDefault();
+
+        const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      });
+    });
   });
-    </script>
+</script>
   </body>
 </html>
