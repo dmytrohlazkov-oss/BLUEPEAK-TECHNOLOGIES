@@ -701,7 +701,17 @@ Whether it’s your home or your business, you can expect honest advice, profess
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-<script>
+<!-- Close mobile menu after click -->
+    <script>
+      document.querySelectorAll(".navbar-collapse .nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          const nav = document.querySelector(".navbar-collapse");
+          const bsCollapse = bootstrap.Collapse.getInstance(nav);
+          if (bsCollapse) bsCollapse.hide();
+        });
+      });
+    </script>
+    <script>
   document.addEventListener("DOMContentLoaded", () => {
     const nav = document.querySelector(".navbar");
     const navHeight = nav ? nav.offsetHeight : 0;
@@ -731,5 +741,6 @@ Whether it’s your home or your business, you can expect honest advice, profess
     });
   });
 </script>
+
   </body>
 </html>
