@@ -701,76 +701,55 @@ Whether it’s your home or your business, you can expect honest advice, profess
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-
-    <!-- Close mobile menu after click -->
-    <script>
-      document.querySelectorAll(".navbar-collapse .nav-link").forEach((link) => {
-        link.addEventListener("click", () => {
-          const nav = document.querySelector(".navbar-collapse");
-          const bsCollapse = bootstrap.Collapse.getInstance(nav);
-          if (bsCollapse) bsCollapse.hide();
-        });
-      });
-    </script>
-    <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const nav = document.querySelector(".navbar");
-    const navHeight = nav ? nav.offsetHeight : 0;
-
-    document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const href = link.getAttribute("href");
-        // якорь, например "#wifi"
-        if (!href || href === "#") return;
-
-        const id = href.substring(1); // "wifi"
-        const target = document.getElementById(id);
-        if (!target) return;
-
-        e.preventDefault();
-
-        const y =
-          target.getBoundingClientRect().top +
-          window.pageYOffset -
-          navHeight - 390; // небольшой запас
-
-        window.scrollTo({
-          top: y,
-          behavior: "smooth",
-        });
-      });
-    });
-  });
-</script>
-    <script>
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const nav = document.querySelector(".navbar");
-    const navHeight = nav ? nav.offsetHeight : 0;
+document.addEventListener("DOMContentLoaded", () => {
 
-    document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
-      link.addEventListener("click", (e) => {
-        const href = link.getAttribute("href");
-        if (!href || href === "#") return;
+  const nav = document.querySelector(".navbar");
+  const navCollapse = document.querySelector(".navbar-collapse");
+  const toggler = document.querySelector(".navbar-toggler");
+  const navHeight = nav ? nav.offsetHeight : 0;
 
-        const id = href.substring(1);
-        const target = document.getElementById(id);
-        if (!target) return;
-
-        e.preventDefault();
-
-        const y =
-          target.getBoundingClientRect().top +
-          window.pageYOffset -
-          (navHeight + 10); // ← ВОТ ЭТО ДОЛЖНО БЫТЬ!
-
-        window.scrollTo({
-          top: y,
-          behavior: "smooth",
-        });
-      });
+  // 1. Закрытие меню при клике по пункту меню
+  document.querySelectorAll(".navbar-collapse .nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+      if (bsCollapse && window.innerWidth < 992) {
+        bsCollapse.hide();
+      }
     });
   });
+
+  // 2. Плавный скролл с учетом высоты навбара
+  document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const target = document.getElementById(href.substring(1));
+      if (!target) return;
+
+      e.preventDefault();
+
+      const y = target.getBoundingClientRect().top + window.pageYOffset - (navHeight + 10);
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
+  });
+
+  // 3. Закрытие меню при клике по белому экрану
+  document.addEventListener("click", (e) => {
+    if (window.innerWidth >= 992) return; // только мобильное меню
+    if (!navCollapse.classList.contains("show")) return; // меню закрыто
+
+    const clickInsideMenu = navCollapse.contains(e.target);
+    const clickOnToggler = toggler.contains(e.target);
+
+    if (!clickInsideMenu && !clickOnToggler) {
+      const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+      if (bsCollapse) bsCollapse.hide();
+    }
+  });
+
+});
 </script>
   </body>
 </html>
