@@ -79,7 +79,107 @@
   <a href="index.html#contact" class="btn btn-dark btn-lg">Contact Us</a>
 </div>
 </div>
-
+  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous"
+></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // ---------- ПЛАВНЫЙ СКРОЛЛ ПО ЯКОРЯМ ----------
+    const nav = document.querySelector(".navbar");
+    const navHeight = nav ? nav.offsetHeight : 0;
+
+    document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const href = link.getAttribute("href");
+        if (!href || href === "#") return;
+
+        const id = href.substring(1);
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        e.preventDefault();
+
+        const y =
+          target.getBoundingClientRect().top +
+          window.pageYOffset -
+          navHeight - 380; // твой запас
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      });
+    });
+
+    // ---------- МОБИЛЬНОЕ МЕНЮ ----------
+    const navCollapse = document.querySelector(".navbar-collapse");
+    const navToggler = document.querySelector(".navbar-toggler");
+
+    if (!navCollapse || !navToggler) return;
+
+    const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navCollapse, {
+      toggle: false,
+    });
+
+    // 1. Закрыть меню при клике по пункту
+    document
+      .querySelectorAll(".navbar-collapse .nav-link")
+      .forEach((link) => {
+        link.addEventListener("click", () => {
+          bsCollapse.hide();
+        });
+      });
+
+    // 2. Закрыть меню при клике по белому экрану
+    document.addEventListener("click", (e) => {
+      if (!navCollapse.classList.contains("show")) return;
+
+      const clickInsideMenu = navCollapse.contains(e.target);
+      const clickOnToggler = navToggler.contains(e.target);
+
+      if (!clickInsideMenu && !clickOnToggler) {
+        bsCollapse.hide();
+      }
+    });
+
+    // 3. Закрытие при прокрутке (но без глюков)
+    let isPointerInsideMenu = false;
+    let scrollAllowed = true;
+    let lastScrollY = window.scrollY;
+
+    navCollapse.addEventListener("pointerenter", () => {
+      isPointerInsideMenu = true;
+    });
+    navCollapse.addEventListener("pointerleave", () => {
+      isPointerInsideMenu = false;
+    });
+
+    // после открытия меню немного игнорируем скролл
+    navCollapse.addEventListener("shown.bs.collapse", () => {
+      scrollAllowed = false;
+      setTimeout(() => {
+        scrollAllowed = true;
+      }, 400); // 0.4 секунды защиты
+    });
+
+    window.addEventListener("scroll", () => {
+      if (!navCollapse.classList.contains("show")) return;
+      if (!scrollAllowed) return;
+      if (isPointerInsideMenu) return;
+
+      if (Math.abs(window.scrollY - lastScrollY) > 20) {
+        bsCollapse.hide();
+      }
+
+      lastScrollY = window.scrollY;
+    });
+  });
+</script>
 </body>
 </html>
