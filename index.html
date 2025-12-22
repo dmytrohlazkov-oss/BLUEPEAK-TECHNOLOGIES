@@ -82,12 +82,11 @@
     margin: 0 auto;
 }
 
-      .hero-img img {
-  display: block;
-  width: 100%;          /* Растянуть по ширине */
-  height: 280px;        /* Ограничение высоты (можно 250–320) */
-  object-fit: cover;    /* Вписывает красиво */
-  object-position: center;  /* Центрует */
+      .hero-img img{
+  display:block;
+  width:100%;
+  height:auto;          /* было 280px */
+  object-fit: contain;  /* было cover */
   border-radius: 0.5rem;
 }
 
