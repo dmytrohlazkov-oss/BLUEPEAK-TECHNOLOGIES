@@ -85,9 +85,18 @@
       .hero-img img{
   display:block;
   width:100%;
-  height:auto;          /* было 280px */
-  object-fit: contain;  /* было cover */
+  height: 280px;        /* по умолчанию */
+  object-fit: cover;
+  object-position: center;
   border-radius: 0.5rem;
+}
+
+/* ПК: делаем аккуратный баннер, не на весь экран */
+@media (min-width: 992px){
+  .hero-img img{
+    height: 360px;      /* попробуй 320–420 */
+    object-fit: cover;
+  }
 }
 
       /* SECTION SHELLS */
