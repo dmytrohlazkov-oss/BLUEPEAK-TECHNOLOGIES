@@ -81,19 +81,30 @@
     
 }
 
-      .hero-img img{
-  display:block;
-  width:100%;
-  height: auto;        /* по умолчанию */
-  object-fit: contain;
-  object-position: center;
-  border-radius: 0.5rem;
+      /* ===== HERO IMAGE ===== */
+
+/* БАЗА — телефоны по умолчанию */
+.hero-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0.5rem;
 }
 
-/* ПК: делаем аккуратный баннер, не на весь экран */
+/* ТЕЛЕФОНЫ — увеличиваем баннер по высоте */
+@media (max-width: 991px) {
+  .hero-img img {
+    min-height: 180px;
+    object-fit: contain;
+  }
+}
+
+/* ПК — красивый широкий баннер */
 @media (min-width: 992px){
-  .hero-img img{
-    height: 360px;      /* попробуй 320–420 */
+  .hero-img img {
+    height: 360px;
     object-fit: cover;
   }
 }
