@@ -84,28 +84,22 @@
       /* ===== HERO IMAGE ===== */
 
 /* БАЗА — телефоны по умолчанию */
+/* ===== HERO IMAGE ===== */
+
+/* Мобильная версия по умолчанию */
 .hero-img img {
     display: block;
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 200px;        /* высота баннера на телефоне */
+    object-fit: cover;    /* заполняет по высоте, чуть режет края, но выглядит мощно */
     object-position: center;
     border-radius: 0.5rem;
 }
 
-/* ТЕЛЕФОНЫ — увеличиваем баннер по высоте */
-@media (max-width: 991px) {
+/* ПК — делаем баннер выше */
+@media (min-width: 992px) {
   .hero-img img {
-    min-height: 180px;
-    object-fit: contain;
-  }
-}
-
-/* ПК — красивый широкий баннер */
-@media (min-width: 992px){
-  .hero-img img {
-    height: 360px;
-    object-fit: cover;
+    height: 340px;        /* можешь менять 320–380 как тебе больше нравится */
   }
 }
 
