@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bluepeak Manitoba IT Services</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      :root {
+        --bp-dark: #022a4f;
+        --bp-dark-soft: #073867;
+        --bp-accent: #1f8bff;
+        --bp-accent-soft: #e5f2ff;
+        --bp-text-main: #111827;
+        --bp-text-soft: #4b5563;
+        --bp-bg-soft: #f3f4f6;
+      }
+      .pricing-card {
+        margin-bottom: 16px;
+      }
+
+      * {
+        scroll-behavior: smooth;
+      }
+    
+      body {
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--bp-text-main);
+      }
+
+      /* NAVBAR */
+      .navbar {
+        box-shadow: 0 0 20px rgba(15, 23, 42, 0.15);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .nav-link {
+        font-weight: 440;
+      }
+
+      /* HERO */
+      .hero-section {
+        background: radial-gradient(circle at top left, #022a4f 0%, #073867 60%, #0a4c8c 100%);
+        color: #ffffff;
+        padding-top: 0.1rem !important;
+        padding-bottom: 0.1rem !important;
+      }
+
+      @media (min-width: 992px) {
+        .hero-section {
+          padding-top: 0.1rem !important;
+          padding-bottom: 0.1rem !important;
+        }
+      }
+
+      .hero-card {
+        background: rgba(15, 23, 42, 0.65);
+        border-radius: 0.5rem;
+        padding: 0.6rem 0.5rem;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+        backdrop-filter: blur(10px);
+        width: 100%;
+      }
+
+      /* ===== HERO IMAGE ===== */
+      .hero-img img {
+        display: block;
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 0.5rem;
+      }
+
+      @media (min-width: 992px) {
+        .hero-img img {
+          height: 480px;
+        }
+      }
+
+      /* SECTION SHELLS */
+      .section-padding {
+        padding: 3rem 0;
+      }
+
+      .section-label {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: #6b7280;
+        margin-bottom: 0.4rem;
+      }
+
+      .section-title {
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+
+      .section-subtitle {
+        color: var(--bp-text-soft);
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      /* FEATURE TAGS */
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        background: var(--bp-accent-soft);
+        color: var(--bp-dark);
+        font-size: 0.8rem;
+        font-weight: 500;
+        margin: 0.2rem;
+      }
+
+      .pill span {
+        font-size: 0.9rem;
+      }
+
+      /* CARDS */
+      .bp-card {
+        border-radius: 1.25rem;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+        padding: 1.5rem 1.6rem;
+        height: 100%;
+        background: #ffffff;
+      }
+
+      .bp-card-icon {
+        font-size: 1.7rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .bp-card-title {
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+      }
+
+      .bp-card-text {
+        font-size: 0.95rem;
+        color: var(--bp-text-soft);
+      }
+
+      /* ALT SECTION BACKGROUND */
+      .section-soft {
+        background: var(--bp-bg-soft);
+      }
+
+      /* PRICING */
+      .pricing-card {
+        border-radius: 1.5rem;
+        padding: 1.8rem 1.7rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.08);
+        height: 100%;
+      }
+
+      .pricing-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #6b7280;
+      }
+
+      .pricing-price {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .pricing-list {
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 1rem;
+      }
+
+      .pricing-list li {
+        font-size: 0.93rem;
+        color: var(--bp-text-soft);
+        margin-bottom: 0.3rem;
+      }
+
+      /* FAQ */
+      .accordion-button {
+        font-weight: 500;
+      }
+
+      /* CONTACT */
+      .contact-card {
+        border-radius: 1.25rem;
+        border: 1px solid #e5e7eb;
+        padding: 1.4rem 1.5rem;
+        background: #ffffff;
+        box-shadow: 0 12px 25px rgba(15, 23, 42, 0.05);
+      }
+
+      .footer {
+        padding: 1.5rem 0 1.2rem;
+        color: #9ca3af;
+        font-size: 0.85rem;
+      }
+
+      /* ===== Compact NAVBAR ===== */
+      .navbar .navbar-nav .nav-link{
+        font-size: 0.92rem;
+        padding: .35rem .55rem;
+        white-space: nowrap;
+      }
+
+      .navbar .navbar-brand{
+        font-size: 1.05rem;
+        padding-top: .4rem;
+        padding-bottom: .4rem;
+      }
+
+      @media (min-width: 992px){
+        .navbar .navbar-nav{
+          flex-wrap: nowrap;
+        }
+        .navbar .navbar-collapse{
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+
+  <body id="top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#top">Bluepeak</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="#top">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#wifi">Wi-Fi</a></li>
+            <li class="nav-item"><a class="nav-link" href="#cabling">Structured Cabling</a></li>
+            <li class="nav-item"><a class="nav-link" href="#it-support">IT Support</a></li>
+            <li class="nav-item"><a class="nav-link" href="#business-it-setup">Business IT Setup</a></li>
+            <li class="nav-item"><a class="nav-link" href="#pricing">Services & Packages</a></li>
+            <li class="nav-item"><a class="nav-link" href="#services">Service & Maintenance</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="/our-work/">Our Work</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="container-fluid px-0">
+        <div class="row g-0">
+          <div class="col-12 p-0">
+            <div class="hero-card hero-img">
+              <img
+                src="mainpic5.png"
+                alt="Bluepeak Manitoba IT Services – Wi-Fi and network systems"
+                class="img-fluid w-100"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 text-center">
+        <span class="pill"><span>📶</span> Wi-Fi & networking</span>
+        <span class="pill"><span>🔌</span> Ethernet cabling</span>
+        <span class="pill"><span>🗄️</span> Network racks & patch panels</span>
+      </div>
+    </section>
+
+    <section id="wifi" class="section-padding section-soft">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Wi-Fi Solutions</div>
+          <h2 class="section-title">Reliable Wi-Fi in every corner</h2>
+          <p class="section-subtitle">
+            We diagnose your current setup, fix weak spots, and install equipment that works for years – not months.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🏡</div>
+              <h3 class="bp-card-title">Whole-Home Wi-Fi</h3>
+              <p class="bp-card-text">
+                Mesh systems and access points that cover every room, basement, garage and backyard – with one strong
+                network name.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🧰</div>
+              <h3 class="bp-card-title">Troubleshooting & Fix</h3>
+              <p class="bp-card-text">
+                Slow internet, random disconnects, smart TV buffering or Zoom drops? We find the real cause and fix it
+                on site.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🏢</div>
+              <h3 class="bp-card-title">Small Business Wi-Fi</h3>
+              <p class="bp-card-text">
+                Stable Wi-Fi for offices, shops, and small warehouses – separate guest networks, clean wiring, and
+                secure equipment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cabling" class="section-padding section-soft">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Low-Voltage & Cabling</div>
+          <h2 class="section-title">Clean, organized network cabling</h2>
+          <p class="section-subtitle">
+            Ethernet cabling, patch panels and small network racks for homes and small businesses in Manitoba.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🔌</div>
+              <h3 class="bp-card-title">Professional Ethernet cabling</h3>
+              <p class="bp-card-text">
+                New Ethernet runs for rooms, offices or Wi-Fi access points - pulled, labelled and tested.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🗄️</div>
+              <h3 class="bp-card-title">Patch panels & racks</h3>
+              <p class="bp-card-text">
+                Patch panels, wall mounts and small network racks installed and organized so everything is easy to service.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🧹</div>
+              <h3 class="bp-card-title">Cable cleanup & office projects</h3>
+              <p class="bp-card-text">
+                We tidy existing cabling, remove old lines and help with small office cabling projects and moves.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="it-support" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Business IT Support</div>
+          <h2 class="section-title">Simple IT help for small offices</h2>
+          <p class="section-subtitle">
+            Basic IT support for small businesses that need a reliable person to call when something stops working.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🖥️</div>
+              <h3 class="bp-card-title">Workstation & printer setup</h3>
+              <p class="bp-card-text">
+                We set up PCs, laptops and network printers so your team can start working without configuration issues.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🌐</div>
+              <h3 class="bp-card-title">Router & firewall basics</h3>
+              <p class="bp-card-text">
+                Basic router and firewall configuration for small offices – Wi-Fi, guest networks and security basics.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="bp-card">
+              <div class="bp-card-icon">🤝</div>
+              <h3 class="bp-card-title">Ongoing support options</h3>
+              <p class="bp-card-text">
+                Optional monthly support so you have someone to call for remote help, small changes and troubleshooting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="business-it-setup" class="section-padding section-soft">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Business IT Setup</div>
+          <h2 class="section-title">Look professional online</h2>
+          <p class="section-subtitle">
+            Many small businesses do excellent work.<br>
+            We help present that work professionally online.
+          </p>
+          <p class="section-subtitle" style="margin-top:-6px;">
+            Whether you’re self-employed or a small team, we help your business look professional,
+            consistent, and easy to recognize.
+          </p>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <div class="bp-card">
+              <div class="bp-card-icon">💼</div>
+              <h3 class="bp-card-title">Professional business basics</h3>
+              <p class="bp-card-text">
+                We help organize the essential business setup so everything looks clear,
+                professional, and consistent:
+              </p>
+              <ul class="bp-card-text" style="margin-top:10px;">
+                <li>Website setup or cleanup</li>
+                <li>Business email with your domain</li>
+                <li>Domain configuration</li>
+                <li>Google Business Profile setup</li>
+                <li>Professional business card design for your business</li>
+              </ul>
+              <p class="bp-card-text" style="margin-top:10px;">
+                Everything aligned so your business is easy to trust and easy to contact.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label"></div>
+          <h2 class="section-title">Services & Packages</h2>
+          <p class="section-subtitle">
+            Final price depends on your home, wiring and equipment – but these ranges give you an idea of what to expect.
+          </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4">
+            <div class="pricing-card border-primary">
+              <div class="pricing-label">Cabling & Local Network</div>
+              <p class="text-muted small mb-2">Clean and organized wiring</p>
+              <ul class="pricing-list">
+                <li>Hiding and organizing visible cables</li>
+                <li>Clean Ethernet runs inside walls or ceilings</li>
+                <li>Local network setup from scratch (home or office)</li>
+                <li>Patch panels, racks and proper cable labeling</li>
+              </ul>
+              <a href="https://wa.me/12049620345?text=Hi!%20I%E2%80%99m%20interested%20in%20network%20cabling%20and%20local%20network%20setup.%20Could%20you%20help%20me%20with%20this%3F"
+                 class="btn btn-primary btn-sm w-100"
+                 target="_blank">
+                Message on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="pricing-card border-primary">
+              <div class="pricing-label">IT Support</div>
+              <p class="text-muted small mb-2">When your devices or network stop working properly</p>
+              <ul class="pricing-list">
+                <li>Printer setup, diagnostics and troubleshooting</li>
+                <li>Network printer and scanner configuration</li>
+                <li>Computer and device setup and issues</li>
+                <li>Network diagnostics and problem resolution</li>
+              </ul>
+              <a href="https://wa.me/12049620345?text=Hi!%20I%E2%80%99m%20having%20some%20IT%20issues%20with%20printers%20or%20my%20network.%20Could%20you%20help%3F"
+                 class="btn btn-primary btn-sm w-100"
+                 target="_blank">
+                Message on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="pricing-card border-primary">
+              <div class="pricing-label">Wi-Fi Fix</div>
+              <p class="text-muted small mb-2">Typical one-time visit</p>
+              <ul class="pricing-list">
+                <li>On-site diagnostics of your current Wi-Fi</li>
+                <li>Fixing router settings, channels, placement</li>
+                <li>Advice on best upgrade options if needed</li>
+              </ul>
+              <a href="https://wa.me/12049620345?text=Hi!%20I%E2%80%99m%20having%20some%20Wi-Fi%20issues%20at%20home.%20Could%20you%20help%20me%20take%20a%20look%3F"
+                 class="btn btn-outline-primary btn-sm w-100"
+                 target="_blank">
+                Message on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="pricing-card border-primary">
+              <div class="pricing-label text-primary">Whole-Home Wi-Fi</div>
+              <p class="text-muted small mb-2">Equipment + installation</p>
+              <ul class="pricing-list">
+                <li>Mesh system or access points included</li>
+                <li>Full setup, testing and optimization</li>
+                <li>Wi-Fi in every room, garage and backyard</li>
+              </ul>
+              <a href="https://wa.me/12049620345?text=Hi!%20I%E2%80%99m%20interested%20in%20whole-home%20Wi-Fi.%20Can%20you%20help%20me%20choose%20the%20best%20setup%3F"
+                 class="btn btn-primary btn-sm w-100"
+                 target="_blank">
+                Book a Free Home Check
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section-padding section-soft">
+      <div class="container">
+        <div class="row g-4 align-items-stretch justify-content-center">
+          <div class="col-lg-7">
+            <div class="bp-card h-100">
+              <div class="bp-card-icon">🛠️</div>
+              <h3 class="bp-card-title">Service & Maintenance</h3>
+              <p class="bp-card-text mb-2">
+                We provide reliable follow-up service and ongoing maintenance after the installation.
+                That means regular checkups, cleaning, updates, and fixing any issues that may appear over time —
+                quickly and without stress.
+              </p>
+              <p class="bp-card-text mb-0">
+                Our goal is to keep your system running smoothly – so you don’t have to worry about anything.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section-padding section-soft">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">FAQ</div>
+          <h2 class="section-title">Questions people ask us</h2>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion" id="faqAccordion">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq1-heading">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                    Are you an internet provider?
+                  </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    No, we're not an internet provider. You keep your current provider – we make their internet work
+                    properly inside your home or business (Wi-Fi, wiring, equipment).
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq2-heading">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                    Do you bring the equipment or can you use mine?
+                  </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    We can work both ways. We install and configure professional equipment that we recommend, or we can
+                    try to work with your existing routers and cameras if they are good enough.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq3-heading">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                    How long does installation usually take?
+                  </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Small Wi-Fi jobs are often done in 1–2 hours. Whole-home Wi-Fi systems can take from
+                    half a day to a full day, depending on size of the house.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="faq4-heading">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                    Do you offer warranty?
+                  </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body">
+                    Yes. We support our work and help with questions after installation. Equipment warranty depends on
+                    the brand you choose – we usually work with trusted, long-term vendors.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section-padding">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="bp-card">
+              <div class="bp-card-icon">⭐</div>
+              <h3 class="bp-card-title">About us</h3>
+              <p class="bp-card-text">
+                Blue Peak Manitoba IT Services provides professional Wi-Fi installation, Ethernet cabling, clean network rack setup для домов и малого бизнеса.
+                We install and organize server racks, patch panels, small business servers, and structured cabling to build reliable IT rooms — so your network is fast, stable, and easy to maintain.
+                We also help new small businesses launch with a complete starter setup: brand name ideas, domain & business email setup, a basic website, business cards, and a clean IT + network installation — ready to work from day one.
+                Our focus is clean setups, stable systems, and solutions that work reliably every day.
+              </p>
+              <p class="bp-card-text">
+                We believe good service means being clear, reliable, and respectful — every time we work with you.
+              </p>
+              <p class="bp-card-text mb-0">
+                You get stable Wi-Fi, organized cabling, and a setup that feels solid and trouble-free every day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <div class="text-center mb-4">
+          <div class="section-label">Contact</div>
+          <h2 class="section-title">Let’s talk about your home or business</h2>
+          <p class="section-subtitle">Call, text, or email – we answer in simple language and help you choose the right option.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-5">
+            <div class="contact-card h-100">
+              <h5 class="mb-1">Deepak Vinayak</h5>
+              <p class="text-muted small mb-2">Customer Care & Network IT Specialist</p>
+              <p class="mb-1">📞 <a href="tel:+14318004741">+1 (431) 800-4741</a></p>
+              <p class="mb-0">
+                ✉️
+                <a href="mailto:d.vinayak@bluepeakit.ca">d.vinayak@bluepeakit.ca</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="contact-card h-100">
+              <h5 class="mb-1">Dmytro Hlazkov</h5>
+              <p class="text-muted small mb-2">IT Support · Service Technician</p>
+              <p class="mb-1">📞 <a href="tel:+12049620345">+1 (204) 962-0345</a></p>
+              <p class="mb-0">
+                ✉️
+                <a href="mailto:d.hlazkov@bluepeakit.ca">d.hlazkov@bluepeakit.ca</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer text-center bg-dark text-light">
+      <div class="container">
+        Bluepeak Manitoba IT Services · Wi-Fi & Network Infrastructure · Manitoba, Canada
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      document.querySelectorAll(".navbar-collapse .nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          const nav = document.querySelector(".navbar-collapse");
+          const bsCollapse = bootstrap.Collapse.getInstance(nav);
+          if (bsCollapse) bsCollapse.hide();
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const nav = document.querySelector(".navbar");
+        const navHeight = nav ? nav.offsetHeight : 0;
+
+        document.querySelectorAll('.nav-link[href^="#"]').forEach((link) => {
+          link.addEventListener("click", (e) => {
+            const href = link.getAttribute("href");
+            if (!href || href === "#") return;
+
+            const id = href.substring(1);
+            const target = document.getElementById(id);
+            if (!target) return;
+
+            e.preventDefault();
+
+            const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 400;
+
+            window.scrollTo({
+              top: y,
+              behavior: "smooth",
+            });
+          });
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const navCollapse = document.querySelector(".navbar-collapse");
+        const navToggler = document.querySelector(".navbar-toggler");
+
+        if (!navCollapse || !navToggler) return;
+
+        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navCollapse, {
+          toggle: false
+        });
+
+        document.querySelectorAll(".navbar-collapse .nav-link").forEach(link => {
+          link.addEventListener("click", () => {
+            bsCollapse.hide();
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!navCollapse.classList.contains("show")) return;
+
+          const clickInsideMenu = navCollapse.contains(e.target);
+          const clickOnToggler = navToggler.contains(e.target);
+
+          if (!clickInsideMenu && !clickOnToggler) {
+            bsCollapse.hide();
+          }
+        });
+
+        let isPointerInsideMenu = false;
+        let menuJustOpened = false;
+
+        navCollapse.addEventListener("pointerenter", () => {
+          isPointerInsideMenu = true;
+        });
+        navCollapse.addEventListener("pointerleave", () => {
+          isPointerInsideMenu = false;
+        });
+
+        navCollapse.addEventListener("shown.bs.collapse", () => {
+          menuJustOpened = true;
+          setTimeout(() => {
+            menuJustOpened = false;
+          }, 400);
+        });
+
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener("scroll", () => {
+          if (!navCollapse.classList.contains("show")) return;
+          if (menuJustOpened) return;
+          if (isPointerInsideMenu) return;
+
+          if (Math.abs(window.scrollY - lastScrollY) > 20) {
+            bsCollapse.hide();
+          }
+
+          lastScrollY = window.scrollY;
+        });
+      });
+    </script>
+  </body>
+</html>
